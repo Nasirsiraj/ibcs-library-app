@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ibcs-library-app"
+  "defaultProject": "ibcs-library-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
