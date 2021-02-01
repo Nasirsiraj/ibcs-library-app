@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { MaterialModule } from './material/material.module';
+import {ComponentModule} from './component/component.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MaterialModule } from './material/material.module';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    MaterialModule
+    ComponentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
