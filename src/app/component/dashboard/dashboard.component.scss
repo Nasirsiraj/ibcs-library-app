@@ -9,12 +9,13 @@
 .dashboard {
   padding: 0px;
   margin: 0px;
-  height: 100vh;
+  height: 100%;
   .sidenav{
     background-color: azure;
     width: 200px;
   }
   .main-content{
     background-color: azure;
+    padding: 4%;
   }
 }

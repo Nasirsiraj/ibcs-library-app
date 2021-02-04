@@ -1,0 +1,122 @@
+<div class="container">
+  <h1>Enter member info</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <form [formGroup]="memberForm">
+<!--    id-->
+<!--    name-->
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        name="name"
+        matInput
+        formControlName="name"
+        placeholder="name"
+      />
+      <mat-error *ngIf="name && name.invalid && name.touched">
+        name is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    nid-->
+    <mat-form-field appearance="fill">
+      <mat-label>NID</mat-label>
+      <input
+        type="number"
+        name="nid"
+        matInput
+        formControlName="nid"
+        placeholder="nid"
+      />
+      <mat-error *ngIf="nid && nid.invalid && nid.touched">
+        nid is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    birthDate-->
+    <mat-form-field appearance="fill">
+      <mat-label>Birth Date</mat-label>
+      <input
+        type="text"
+        name="birthDate"
+        matInput
+        formControlName="birthDate"
+        placeholder="birth date"
+      />
+      <mat-error *ngIf="birthDate && birthDate.invalid && birthDate.touched">
+        birth date is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    age-->
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input
+        type="number"
+        name="age"
+        matInput
+        formControlName="age"
+        placeholder="age"
+      />
+      <mat-error *ngIf="age && age.invalid && age.touched">
+        age is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    email-->
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        name="email"
+        matInput
+        formControlName="email"
+        placeholder="email"
+      />
+      <mat-error *ngIf="email && email.invalid && email.touched">
+        email is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    password-->
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        name="password"
+        matInput
+        formControlName="password"
+        placeholder="password"
+      />
+      <mat-error *ngIf="password && password.invalid && password.touched">
+        password is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+<!--    address-->
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input
+        type="text"
+        name="address"
+        matInput
+        formControlName="address"
+        placeholder="address"
+      />
+      <mat-error *ngIf="address && address.invalid && address.touched">
+        address is required
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+<!--    book-->
+<!--    issueDate-->
+<!--    fine-->
+<!--    submit button-->
+    <button mat-raised-button
+            (click)="onSubmit(memberForm.value)"
+            [disabled]="memberForm.invalid"
+            color="primary">Create Account</button>
+  </form>
+</div>
