@@ -1,4 +1,27 @@
 .container{
-  height: 300px;
-  background-color: black;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+
+  .footer{
+    height: 300px;
+    background-color: #101010;
+
+    .footer-content{
+
+    }
+
+  }
+  .footer-end{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background: black;
+
+    .footer-end h1{
+      color: azure;
+      font-size: 20px;
+    }
+  }
 }

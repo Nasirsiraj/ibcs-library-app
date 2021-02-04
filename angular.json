@@ -134,6 +134,7 @@
   },
   "defaultProject": "ibcs-library-app",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@ngrx/schematics"
   }
 }
