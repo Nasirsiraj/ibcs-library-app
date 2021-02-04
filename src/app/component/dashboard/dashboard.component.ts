@@ -8,6 +8,17 @@ import {Component, OnInit} from '@angular/core';
 export class DashboardComponent implements OnInit {
   constructor() { }
   sidenavOpened = true;
+  navLinkList = [
+    'Create Account',
+    'Browse Books',
+    'Borrow Books',
+    'Submit Books',
+    'Pay Fine',
+    'Contact',
+    'Help',
+    'Share',
+    'Settings'
+  ];
 
   ngOnInit(): void {
   }
