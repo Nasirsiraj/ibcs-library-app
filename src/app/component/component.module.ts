@@ -5,6 +5,7 @@ import {AppRoutingModule, RoutingComponent} from '../app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CheckAccountComponent } from './check-account/check-account.component';
+import { BrowseBooksComponent } from './browse-books/browse-books.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CheckAccountComponent } from './check-account/check-account.component';
         RoutingComponent,
         FooterComponent,
         CheckAccountComponent,
+        BrowseBooksComponent,
     ],
     exports: [
         FooterComponent
