@@ -4,22 +4,12 @@ import {MaterialModule} from '../material/material.module';
 import {AppRoutingModule, RoutingComponent} from '../app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CheckAccountComponent } from './check-account/check-account.component';
-import { BrowseBooksComponent } from './browse-books/browse-books.component';
-import { BorrowBooksComponent } from './borrow-books/borrow-books.component';
-import { ReturnBookComponent } from './return-book/return-book.component';
-import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
     declarations: [
         RoutingComponent,
-        FooterComponent,
-        CheckAccountComponent,
-        BrowseBooksComponent,
-        BorrowBooksComponent,
-        ReturnBookComponent,
-        PaymentComponent,
+        FooterComponent
     ],
     exports: [
         FooterComponent
