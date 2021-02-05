@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CheckAccountComponent } from './check-account/check-account.component';
 import { BrowseBooksComponent } from './browse-books/browse-books.component';
 import { BorrowBooksComponent } from './borrow-books/borrow-books.component';
+import { ReturnBookComponent } from './return-book/return-book.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { BorrowBooksComponent } from './borrow-books/borrow-books.component';
         CheckAccountComponent,
         BrowseBooksComponent,
         BorrowBooksComponent,
+        ReturnBookComponent,
     ],
     exports: [
         FooterComponent
