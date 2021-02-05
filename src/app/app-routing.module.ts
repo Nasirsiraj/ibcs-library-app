@@ -4,12 +4,14 @@ import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {ErrorPageComponent} from './component/error-page/error-page.component';
 import {CreateAccountComponent} from './component/create-account/create-account.component';
 import {ContactComponent} from './component/contact/contact.component';
+import {HelpComponent} from './component/help/help.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent, children: [
       {path: '', redirectTo: 'create-account', pathMatch: 'full'},
       {path: 'create-account', component: CreateAccountComponent},
+      {path: 'help', component: HelpComponent},
       {path: 'contact', component: ContactComponent},
       {path: '**', redirectTo: 'create-account'}
     ]},
@@ -26,5 +28,6 @@ export const RoutingComponent = [
   DashboardComponent,
   ErrorPageComponent,
   CreateAccountComponent,
-  ContactComponent
+  ContactComponent,
+  HelpComponent
 ];
