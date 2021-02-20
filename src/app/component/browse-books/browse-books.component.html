@@ -1,1 +1,45 @@
-<p>browse-books works!</p>
+<div class="container">
+  <h1 align="center">All books table</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <table mat-table [dataSource]="books" class="mat-elevation-z2">
+<!--    name column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let book">{{book.name}}</td>
+    </ng-container>
+
+<!--    subject column-->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef>Subject</th>
+      <td mat-cell *matCellDef="let book">{{book.subject}}</td>
+    </ng-container>
+
+<!--    writer column-->
+    <ng-container matColumnDef="writer">
+      <th mat-header-cell *matHeaderCellDef>Writer</th>
+      <td mat-cell *matCellDef="let book">{{book.writer}}</td>
+    </ng-container>
+
+<!--    page column-->
+    <ng-container matColumnDef="page">
+      <th mat-header-cell *matHeaderCellDef>Page</th>
+      <td mat-cell *matCellDef="let book">{{book.page}}</td>
+    </ng-container>
+
+<!--    action column-->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let book">
+        <button mat-stroked-button color="primary">Borrow</button>
+      </td>
+    </ng-container>
+
+<!--    header-->
+    <tr mat-header-row *matHeaderRowDef="bookTableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: bookTableColumns;"></tr>
+<!--    table data-->
+  </table>
+</div>
+<br><br><br>
+<br><br><br>
