@@ -16,13 +16,13 @@ export class CreateAccountComponent implements OnInit {
   ) { }
   memberForm = this.formBuilder.group({
     id: [null],
-    name: ['', [Validators.required]],
-    nid: [null, [Validators.required]],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    nid: [null, [Validators.required, Validators.min(10000), Validators.max(9999999999)]],
     birthDate: ['', [Validators.required]],
-    age: [null, [Validators.required]],
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    address: ['', [Validators.required]],
+    age: [null, [Validators.required, Validators.min(18), Validators.max(150)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+    address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     book: [''],
     issueDate: [''],
     fine: [0]

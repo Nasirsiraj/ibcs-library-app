@@ -12,8 +12,8 @@ export class PaymentComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
   paymentForm = this.formBuilder.group({
-    nid: [null, [Validators.required]],
-    password: [null, [Validators.required]]
+    nid: [null, [Validators.required, Validators.min(10000), Validators.max(9999999999)]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
   })
 
   ngOnInit(): void {
