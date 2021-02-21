@@ -114,7 +114,11 @@
         matInput
         formControlName="password"
         placeholder="password"
+        [matAutocomplete]="randomPassword"
       />
+      <mat-autocomplete autoActiveFirstOption #randomPassword="matAutocomplete">
+        <mat-option value="{{randomstring}}">{{randomstring}}</mat-option>
+      </mat-autocomplete>
       <mat-error *ngIf="password && password.invalid && password.touched">
         <span *ngIf="password.hasError('required')">
           password is required

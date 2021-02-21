@@ -14,6 +14,7 @@ export class CreateAccountComponent implements OnInit {
     private formBuilder: FormBuilder,
     private memberService: MemberService
   ) { }
+  randomstring = Math.random().toString(36).slice(-8)
   memberForm = this.formBuilder.group({
     id: [null],
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
