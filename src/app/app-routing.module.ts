@@ -12,6 +12,7 @@ import {BrowseBooksComponent} from './component/browse-books/browse-books.compon
 import {ReturnBookComponent} from './component/return-book/return-book.component';
 import {PaymentComponent} from './component/payment/payment.component';
 import {BorrowBooksComponent} from './component/borrow-books/borrow-books.component';
+import {AddBookComponent} from './component/add-book/add-book.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'check-account', component: CheckAccountComponent},
       {path: 'browse-books', component: BrowseBooksComponent},
       {path: 'borrow-book', component: BorrowBooksComponent},
+      {path: 'add-book', component: AddBookComponent},
       {path: 'return-book', component: ReturnBookComponent},
       {path: 'payment', component: PaymentComponent},
       {path: 'help', component: HelpComponent},
@@ -49,6 +51,7 @@ export const RoutingComponent = [
   CheckAccountComponent,
   BrowseBooksComponent,
   BorrowBooksComponent,
+  AddBookComponent,
   ReturnBookComponent,
   PaymentComponent
 ];
