@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Book} from '../../model/book.model';
+import {BookService} from '../../service/book.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-browse-books',
@@ -8,31 +10,15 @@ import {Book} from '../../model/book.model';
 })
 export class BrowseBooksComponent implements OnInit {
 
-  constructor() { }
-  books: Book[] = [
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-    {id: 101, name: 'ABC', subject: 'Math', writer: 'Nasir', page: 200 },
-  ]
+  constructor(
+    private bookService: BookService,
+    private router: Router
+  ) { }
+  books: Book[] = []
+  isLoading = true
+  hasError = false
+  isEmpty = false
+
   bookTableColumns = [
     'name',
     'subject',
@@ -42,6 +28,28 @@ export class BrowseBooksComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    this.updateBooks()
   }
+  updateBooks(): void{
+    this
+      .bookService
+      .getAllBooks()
+      .subscribe(
+        (response) => {
+          this.isLoading = false
+          this.books = response
+          if(this.books == []){
+            this.isEmpty = true
+          }
 
+        },
+        (error) => {
+          this.isLoading = false
+          this.hasError = true
+        }
+      )
+  }
+  borrowBooks(id: number): void{
+    this.router.navigate(['/dashboard/borrow-book',id])
+  }
 }

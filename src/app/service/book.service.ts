@@ -18,6 +18,10 @@ export class BookService {
   getBookById(id: number): Observable<Book | null>{
     return this.httpClient.get<Book | null>(`${this.apiUrl}/book/${id}`)
   }
+  // get all books
+  getAllBooks(): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(`${this.apiUrl}/books`)
+  }
   // post one book
   postOneBook(book: Book): Observable<Book | null>{
     return this.httpClient.post<Book | null>(`${this.apiUrl}/book`, book)

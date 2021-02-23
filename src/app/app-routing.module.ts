@@ -21,7 +21,7 @@ const routes: Routes = [
       {path: 'create-account', component: CreateAccountComponent},
       {path: 'check-account', component: CheckAccountComponent},
       {path: 'browse-books', component: BrowseBooksComponent},
-      {path: 'borrow-book', component: BorrowBooksComponent},
+      {path: 'borrow-book/:id', component: BorrowBooksComponent},
       {path: 'add-book', component: AddBookComponent},
       {path: 'return-book', component: ReturnBookComponent},
       {path: 'payment', component: PaymentComponent},

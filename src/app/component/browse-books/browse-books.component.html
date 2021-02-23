@@ -1,4 +1,8 @@
-<div class="container">
+<div class="loading" *ngIf="isLoading && isEmpty && !hasError">
+  <br><br><br>
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+<div class="container" *ngIf="!isEmpty && !hasError">
   <h1 align="center">All books table</h1>
   <mat-divider></mat-divider>
   <br><br>
@@ -31,7 +35,10 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let book">
-        <button mat-stroked-button color="primary">Borrow</button>
+        <button
+          mat-stroked-button
+          (click)="borrowBooks(book.id)"
+          color="primary">Borrow</button>
       </td>
     </ng-container>
 
@@ -41,5 +48,25 @@
 <!--    table data-->
   </table>
 </div>
-<br><br><br>
-<br><br><br>
+<div class="empty" *ngIf="isEmpty && !isLoading && !isEmpty">
+  <br><br><br>
+  <h1 align="center">No books available</h1>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="updateBooks()">
+    Reload
+  </button>
+</div>
+<div class="error" *ngIf="hasError && !isLoading">
+  <br>
+  <h1 align="center">Error Occurred!</h1>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="updateBooks()">
+    Try Again
+  </button>
+</div>
