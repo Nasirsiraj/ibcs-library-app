@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isSubmitted">
   <h1>Enter your info</h1>
   <mat-divider></mat-divider>
   <br><br>
@@ -48,4 +48,42 @@
     >See Books</button>
   </form>
 </div>
-<br><br><br>
+<div class="failed" *ngIf="isAccountFailed && accountFeedbackMessage">
+  <br>
+  <h1 align="center">{{accountFeedbackMessage}}</h1>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
+</div>
+<div class="success" *ngIf="isAccountSucceed && member && accountFeedbackMessage">
+<!--  have book-->
+  <div class="book" *ngIf="member && member.book != ''">
+    <h1 align="center">{{accountFeedbackMessage}}</h1>
+    <h1 align="center">Book name: Math</h1>
+    <mat-divider></mat-divider>
+    <br><br>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="returnBook(member)">
+      Return Now
+    </button>
+  </div>
+<!--  don't have book-->
+  <div class="no-book" *ngIf="member && member.book == ''">
+    <br>
+    <h1 align="center">{{accountFeedbackMessage}}</h1>
+    <mat-divider></mat-divider>
+    <br><br>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="refreshPage()">
+      Try Another Account
+    </button>
+  </div>
+</div>
