@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isSubmitted">
  <h1>Enter your info</h1>
   <mat-divider></mat-divider>
   <br><br>
@@ -47,4 +47,39 @@
       color="primary"
       >Check</button>
   </form>
+</div>
+<div class="failed" *ngIf="isFailed && feedbackMessage">
+  <h1 align="center">Checking Failed</h1>
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
+</div>
+<div class="success" *ngIf="isSucceed && member && feedbackMessage">
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <h1>Name: {{member.name}}</h1>
+  <h1>NID: {{member.nid}}</h1>
+  <h1>Birth Date: {{member.birthDate}}</h1>
+  <h1>Age: {{member.age}}</h1>
+  <h1>Email: {{member.email}}</h1>
+  <h1>Address: {{member.address}}</h1>
+  <h1 *ngIf="member.book">Books: {{member.book}}</h1>
+  <h1 *ngIf="!member.book">Books: No Books</h1>
+  <h1 *ngIf="member.issueDate">Issu Date:{{member.issueDate}}</h1>
+  <h1 *ngIf="member.fine">Fine: {{member.fine}}</h1>
+  <h1 *ngIf="!member.fine">Fine: No fine</h1>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Check Another Account
+  </button>
 </div>
