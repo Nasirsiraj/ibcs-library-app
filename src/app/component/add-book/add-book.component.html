@@ -1,1 +1,110 @@
-<p>add-book works!</p>
+<div class="container" *ngIf="!isSubmitted">
+  <h1 align="center">Enter book info</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <form [formGroup]="addBookForm">
+    <!--  name-->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter book name</mat-label>
+      <input
+        type="text"
+        name="name"
+        matInput
+        formControlName="name"
+        placeholder="book name"
+      />
+      <mat-error *ngIf="name && name.invalid && name.touched">
+        <span *ngIf="name.hasError('required')">book name is required</span>
+        <span *ngIf="name.hasError('minlength')">minimum 3 character required</span>
+        <span *ngIf="name.hasError('maxlength')">maximum 20 character required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <!--  subject-->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter book subject</mat-label>
+      <input
+        type="text"
+        name="subject"
+        matInput
+        formControlName="subject"
+        placeholder="book subject"
+      />
+      <mat-error *ngIf="subject && subject.invalid && subject.touched">
+        <span *ngIf="subject.hasError('required')">book subject is required</span>
+        <span *ngIf="subject.hasError('minlength')">minimum 3 character is required</span>
+        <span *ngIf="subject.hasError('maxlength')">maximum 20 character is required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <!--  writer-->
+    <mat-form-field appearance="fill">
+      <mat-label>Writer name</mat-label>
+      <input
+        type="text"
+        name="writer"
+        matInput
+        formControlName="writer"
+        placeholder="writer name"
+      />
+      <mat-error *ngIf="writer && writer.invalid && writer.touched">
+        <span *ngIf="writer.hasError('required')">writer name is required</span>
+        <span *ngIf="writer.hasError('minlength')">minimum 3 character is required</span>
+        <span *ngIf="writer.hasError('maxlength')">maximum 20 character is required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+    <!--  page-->
+    <mat-form-field appearance="fill">
+      <mat-label>Page number</mat-label>
+      <input
+        type="number"
+        name="page"
+        matInput
+        formControlName="page"
+        placeholder="page number"
+      />
+      <mat-error *ngIf="page && page.invalid && page.touched">
+        <span *ngIf="page.hasError('required')">page number is required</span>
+        <span *ngIf="page.hasError('min')">minimum 1 is required</span>
+        <span *ngIf="page.hasError('max')">maximum 10000 is required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+    <!--  submit-->
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="addBookForm.invalid"
+      (click)="onSubmitted(addBookForm.value)">
+      Submit
+    </button>
+  </form>
+</div>
+<div class="failed" *ngIf="isFailed && feedbackMessage">
+  <br>
+  <h1 align="center">Book Adding Failed</h1>
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
+</div>
+<div class="success" *ngIf="isSucceed && feedbackMessage && book">
+  <br>
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Add More
+  </button>
+</div>
