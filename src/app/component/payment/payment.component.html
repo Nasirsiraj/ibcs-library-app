@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isSubmitted">
   <h1>Enter your info</h1>
   <mat-divider></mat-divider>
   <br><br>
@@ -48,4 +48,62 @@
       >See due</button>
   </form>
 </div>
-<br><br><br>
+<div class="failed" *ngIf="isAccountFailed && accountFeedback">
+  <h1 align="center">{{accountFeedback}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
+</div>
+<div class="success" *ngIf="isAccountSucceed && member && accountFeedback">
+<!--  due-->
+  <div class="due" *ngIf="member.fine != 0">
+    <h1>{{accountFeedback}}</h1>
+    <mat-divider></mat-divider>
+    <br><br>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="payNow(member)">
+      Pay Now
+    </button>
+  </div>
+<!--  no due-->
+  <div class="no-due" *ngIf="member.fine == 0">
+    <h1>{{accountFeedback}}</h1>
+    <mat-divider></mat-divider>
+    <br><br>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="refreshPage()">
+      Try New Account
+    </button>
+  </div>
+</div>
+<div class="failed" *ngIf="isPaymentFailed && paymentFeedback">
+  <h1 align="center">Payment Failed!</h1>
+  <h1 align="center">{{paymentFeedback}}</h1>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
+</div>
+<div class="success" *ngIf="isPaymentSucceed && paymentFeedback && payedMember && payedMember.fine == 0">
+  <h1 align="center">{{paymentFeedback}}</h1>
+  <mat-divider></mat-divider>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Pay Another Account
+  </button>
+</div>
