@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isSubmitted">
   <h1>Enter member info</h1>
   <mat-divider></mat-divider>
   <br><br>
@@ -117,7 +117,7 @@
         [matAutocomplete]="randomPassword"
       />
       <mat-autocomplete autoActiveFirstOption #randomPassword="matAutocomplete">
-        <mat-option value="{{randomstring}}">{{randomstring}}</mat-option>
+        <mat-option value="{{randomstring}}">{{randomstring }}</mat-option>
       </mat-autocomplete>
       <mat-error *ngIf="password && password.invalid && password.touched">
         <span *ngIf="password.hasError('required')">
@@ -165,4 +165,26 @@
             [disabled]="memberForm.invalid"
             color="primary">Create Account</button>
   </form>
+</div>
+<div class="success" *ngIf="isSucceed && feedbackMessage && member">
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Create New</button>
+</div>
+<div class="failed" *ngIf="isFailed && feedbackMessage">
+  <h1 align="center">Account creation failed!</h1>
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
 </div>

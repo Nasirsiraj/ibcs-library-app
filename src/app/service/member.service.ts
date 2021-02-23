@@ -22,13 +22,17 @@ export class MemberService {
   public getMemberById(id: number): Observable<Member | null>{
     return this.httpClient.get<Member | null>(`${this.apiUrl}/member/${id}`);
   }
+  // get member by nid
+  public getMemberByNid(nid: number): Observable<Member | null>{
+    return this.httpClient.get<Member | null>(`${this.apiUrl}/memberByNid/${nid}`)
+  }
   // post all member
   public postAllMember(members: Member[]): Observable<Member[]>{
     return this.httpClient.post<Member[]>(`${this.apiUrl}/members`, members);
   }
   // post one member
-  public postOneMember(member: Member): Observable<Member>{
-    return this.httpClient.post<Member>(`${this.apiUrl}/member`, member);
+  public postOneMember(member: Member): Observable<Member | null>{
+    return this.httpClient.post<Member | null>(`${this.apiUrl}/member`, member);
   }
   // delete member by id
   public deleteMemberById(id: number): Observable<string>{

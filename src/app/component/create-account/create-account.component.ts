@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MemberService} from '../../service/member.service';
 import {Member} from '../../model/member.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-account',
@@ -12,8 +13,15 @@ export class CreateAccountComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private memberService: MemberService
+    private memberService: MemberService,
+    private snackBar: MatSnackBar
   ) { }
+  isSubmitted = false
+  isSucceed = false
+  isFailed = false
+  feedbackMessage = ""
+
+  member: Member | null = null
   randomstring = Math.random().toString(36).slice(-8)
   memberForm = this.formBuilder.group({
     id: [null],
@@ -29,11 +37,62 @@ export class CreateAccountComponent implements OnInit {
     fine: [0]
   })
 
-  onSubmit(member: Member): void{
-    console.log(member)
+  onSubmit(value: Member): void{
+    this.isSubmitted = true
+    try{
+      this
+        .memberService
+        .postOneMember(value)
+        .subscribe(
+          (response) => {
+            this.member = response
+            console.log(response)
+            if(this.member == null){
+              // duplicate nid
+              this.isSucceed = false
+              this.isFailed = true
+              this.feedbackMessage = "Duplicate NID!"
+              this.showSnackBar(this.feedbackMessage, "Close")
+
+            } else if(this.member != null && this.member.nid != value.nid){
+              // error occurred
+              this.isSucceed = false
+              this.isFailed = true
+              this.feedbackMessage = "Error occurred!"
+              this.showSnackBar(this.feedbackMessage, "Close")
+
+            } else if(this.member != null && this.member.nid == value.nid){
+              // succeed
+              this.isSucceed = true
+              this.isFailed = false
+              this.feedbackMessage = "Member created successfully!"
+              this.showSnackBar(this.feedbackMessage, "Done")
+            }
+          },
+          (error) => {
+            this.isSucceed = false
+            this.isFailed = true
+            this.feedbackMessage = "Server Error!"
+            this.showSnackBar(this.feedbackMessage, "Close")
+          }
+        )
+    }catch (e){
+      console.log(e.message)
+      this.isSucceed = false
+      this.isFailed = true
+      this.feedbackMessage = "Error occurred!"
+      this.showSnackBar(this.feedbackMessage, "Close")
+    }
+
     this.memberForm.reset()
   }
   ngOnInit(): void {
+  }
+  showSnackBar(message: string, action: string): void{
+    this.snackBar.open(message, action, {duration: 5000})
+  }
+  refreshPage(): void{
+    window.location.reload()
   }
 
   // getters
