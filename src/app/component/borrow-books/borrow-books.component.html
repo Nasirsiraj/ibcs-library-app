@@ -1,1 +1,93 @@
-<p>borrow-books works!</p>
+<div *ngIf="isLoading">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+<div class="no-book" *ngIf="!isBookFound && !isLoading">
+  <br><br>
+  <h1 align="center">Sorry, the book is not found!</h1>
+  <mat-divider></mat-divider>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="goToBrowseBooks()">
+    Borrow Another
+  </button>
+</div>
+<div class="container" *ngIf="!isSubmitted && isBookFound && bookId && book">
+  <br>
+  <h1>Enter your info</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <form [formGroup]="borrowBookForm">
+    <!--    nid-->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your account no</mat-label>
+      <input
+        type="number"
+        name="nid"
+        matInput
+        formControlName="nid"
+        placeholder="account no"
+      />
+      <mat-error *ngIf="nid && nid.invalid && nid.touched">
+        <span *ngIf="nid.hasError('required')">account no is required</span>
+        <span *ngIf="nid.hasError('min')">minimum 5 digit required</span>
+        <span *ngIf="nid.hasError('max')">maximum 10 digit required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <!--    password-->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        type="password"
+        name="password"
+        matInput
+        formControlName="password"
+        placeholder="password"
+      />
+      <mat-error *ngIf="password && password.invalid && password.touched">
+        <span *ngIf="password.hasError('required')">password is required</span>
+        <span *ngIf="password.hasError('minlength')">minimum 6 character required</span>
+        <span *ngIf="password.hasError('maxlength')">maximum 10 character required</span>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <!--    submit-->
+    <button
+      mat-raised-button
+      type="button"
+      [disabled]="borrowBookForm.invalid"
+      (click)="onSubmit(borrowBookForm.value)"
+      color="primary"
+    >Confirm</button>
+  </form>
+</div>
+<div class="success" *ngIf="isSucceed && book && member && feedbackMessage">
+  <br>
+  <h1 align="center">{{feedbackMessage}}!</h1>
+  <mat-divider></mat-divider>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="goToBrowseBooks()">
+    Browse More
+  </button>
+
+</div>
+<div class="failed" *ngIf="isFailed && feedbackMessage">
+  <br><br>
+  <h1 align="center">{{feedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="goToBrowseBooks()">
+    Try Again
+  </button>
+</div>
+
