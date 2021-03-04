@@ -32,3 +32,13 @@
     align-items: center;
   }
 }
+.return-failed{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.return-success{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

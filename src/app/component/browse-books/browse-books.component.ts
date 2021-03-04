@@ -38,7 +38,7 @@ export class BrowseBooksComponent implements OnInit {
         (response) => {
           this.isLoading = false
           this.books = response
-          if(this.books == []){
+          if(this.books.length == 0){
             this.isEmpty = true
           }
 
@@ -46,6 +46,7 @@ export class BrowseBooksComponent implements OnInit {
         (error) => {
           this.isLoading = false
           this.hasError = true
+          this.isEmpty = true
         }
       )
   }

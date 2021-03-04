@@ -43,6 +43,7 @@
     <button
       mat-raised-button
       [disabled]="returnBookForm.invalid"
+      type="button"
       (click)="onSubmit(returnBookForm.value)"
       color="primary"
     >See Books</button>
@@ -61,9 +62,8 @@
 </div>
 <div class="success" *ngIf="isAccountSucceed && member && accountFeedbackMessage">
 <!--  have book-->
-  <div class="book" *ngIf="member && member.book != ''">
+  <div class="book" *ngIf="member && (member.book != '' && member.book != null) && !isReturnBookSucceed && !isReturnBookFailed">
     <h1 align="center">{{accountFeedbackMessage}}</h1>
-    <h1 align="center">Book name: Math</h1>
     <mat-divider></mat-divider>
     <br><br>
     <button
@@ -74,7 +74,7 @@
     </button>
   </div>
 <!--  don't have book-->
-  <div class="no-book" *ngIf="member && member.book == ''">
+  <div class="no-book" *ngIf="member && (member.book == null || member.book == '') && !isReturnBookSucceed && !isReturnBookFailed">
     <br>
     <h1 align="center">{{accountFeedbackMessage}}</h1>
     <mat-divider></mat-divider>
@@ -86,4 +86,29 @@
       Try Another Account
     </button>
   </div>
+</div>
+<div class="return-success" *ngIf="isReturnBookSucceed && !isReturnBookFailed">
+  <br><br>
+  <h1 align="center">Book returned successful!</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Return Again
+  </button>
+</div>
+<div class="return-failed" *ngIf="isReturnBookFailed && !isReturnBookSucceed">
+  <br><br>
+  <h1 align="center">Book return failed!</h1>
+  <h1 align="center">{{returnBookFeedbackMessage}}</h1>
+  <mat-divider></mat-divider>
+  <br><br>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="refreshPage()">
+    Try Again
+  </button>
 </div>

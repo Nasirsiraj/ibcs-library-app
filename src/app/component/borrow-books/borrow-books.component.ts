@@ -101,12 +101,12 @@ export class BorrowBooksComponent implements OnInit {
               this.feedbackMessage = "Wrong Password!"
               this.showSnackBar(this.feedbackMessage, "Close")
 
-            } else if(this.member != null && this.member.password == value.password && this.member.book != ''){
+            } else if(this.member != null && this.member.password == value.password && this.member.book != null){
               this.isSucceed = false
               this.isFailed = true
               this.feedbackMessage = "Please return your book first!"
               this.showSnackBar(this.feedbackMessage, "Close")
-            } else if(this.member != null && this.member.password == value.password && this.member.book == ''){
+            } else if(this.member != null && this.member.password == value.password && this.member.book == null){
               // @ts-ignore
               this.borrowUpdateMember(this.member, this.book.id)
             }

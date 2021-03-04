@@ -32,8 +32,8 @@ export class CreateAccountComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
     address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    book: [''],
-    issueDate: [''],
+    book: [null],
+    issueDate: [null],
     fine: [0]
   })
 
@@ -46,7 +46,6 @@ export class CreateAccountComponent implements OnInit {
         .subscribe(
           (response) => {
             this.member = response
-            console.log(response)
             if(this.member == null){
               // duplicate nid
               this.isSucceed = false
